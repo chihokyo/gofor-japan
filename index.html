@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form to QR Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
+  >
+    <div id="app" class="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+      <!-- Header -->
+      <header class="mb-4">
+        <h1 class="text-xl font-bold text-center text-gray-800">
+          填写信息生成二维码
+        </h1>
+      </header>
+
+      <!-- Form -->
+      <form id="form" class="space-y-4">
+        <!-- Step 1 -->
+        <div class="step" id="step-1">
+          <label class="block">
+            <span class="text-gray-700">年龄</span>
+            <input
+              type="number"
+              id="age"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="请输入年龄"
+            />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">性别</span>
+            <select
+              id="gender"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            >
+              <option value="">请选择性别</option>
+              <option value="男">男</option>
+              <option value="女">女</option>
+              <option value="其他">其他</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step hidden" id="step-2">
+          <label class="block">
+            <span class="text-gray-700">学校背景</span>
+            <input
+              type="text"
+              id="education"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="学校和学历"
+            />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">工作背景</span>
+            <input
+              type="text"
+              id="work"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="工作年限"
+            />
+          </label>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step hidden" id="step-3">
+          <label class="block">
+            <span class="text-gray-700">赴日目的</span>
+            <select
+              id="purpose"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            >
+              <option value="">请选择目的</option>
+              <option value="留学">留学</option>
+              <option value="就业">就业</option>
+              <option value="其他">其他</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="text-gray-700">是否移民倾向</span>
+            <select
+              id="immigration"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            >
+              <option value="">请选择</option>
+              <option value="是">是</option>
+              <option value="否">否</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step hidden" id="step-4">
+          <label class="block">
+            <span class="text-gray-700">可用于渡日的存款</span>
+            <input
+              type="number"
+              id="savings"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="以日元为单位"
+            />
+          </label>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step hidden" id="step-5">
+          <label class="block">
+            <span class="text-gray-700">补充说明</span>
+            <textarea
+              id="notes"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              rows="4"
+              placeholder="详细描述你的情况"
+            ></textarea>
+          </label>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between mt-4">
+          <button
+            type="button"
+            id="prev"
+            class="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+            disabled
+          >
+            上一步
+          </button>
+          <button
+            type="button"
+            id="next"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            下一步
+          </button>
+        </div>
+      </form>
+
+      <!-- QR Code -->
+      <div id="qrcode" class="hidden mt-6 text-center">
+        <p class="text-gray-700">以下是生成的二维码：</p>
+        <div id="qrcode-container" class="my-4"></div>
+        <button id="restart" class="bg-blue-500 text-white px-4 py-2 rounded">
+          重新填写
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
